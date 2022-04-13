@@ -1,0 +1,238 @@
+{% extends "projects/base.html" %}
+{% load static %}
+{% block content %} 
+  <!-- main image & intro text -->
+  <section id="intro">
+    <div class="container-lg">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-5 text-center text-md-start">
+                <h1>
+                    <div class="display-2">Software Engineer</div>
+                    <div class="display-5 text-muted">Python-Developer</div>
+                </h1>
+                <p class="lead my-4 ">Full-Stack Django Engineer!</p> 
+                <a href="#contact" class="btn btn-warning btn-lg">Contact Me</a>
+                <!--Open sidebar/offcanvas-->
+                <a href="#project" class="d-block mt-3 text-muted" 
+                role="button" aria-controls="sidebar">
+                Explore my featured projects
+                </a>
+            </div>
+            <div class="col-md-5 text-center d-none d-md-block">
+                <!--tooltip-->
+                <span class="" data-bs-placement="bottom" title="Pro portfolio Main Intro"> <!--short for tooltip-->
+                    <img class="img-fluid" src="{% static 'projects/mvhtransparent.png' %}" alt="ebook cover">
+                </span>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!--Projects-->
+<section id="project"  class="bg-light mt-5" class="join">
+<div class="container-lg"> 
+    <div class=" text-center mb-3">
+    <h2>Project Portfolio</h2> 
+    <p class="lead text-muted">My Coding Portfolio.</p>
+    </div>
+<div class="row ">
+{% for project in projects %}
+<div class="col-md-6 col-lg-4">
+    <div class="card mb-2">
+        <img class="card-img-top" src="{{ project.image.url }}" alt="project image">
+        <div class="card-body  d-flex flex-column">
+            <h5 class="card-title">{{ project.title }}</h5>
+            <p class="card-text">{{ project.description }}</p>
+            <a href="{% url 'project_detail' project.pk %}" class="btn btn-warning mt-auto align-self-start">
+                Read More
+            </a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div> 
+</div>
+</section>
+
+<!-- topics at a glance -->
+<section id="topics">
+    <div class="container-md">
+      <div class="text-center">
+        <h2>Inside My Video Hub...</h2>
+        <p class="lead text-muted">My Video Hub at a glance!</p>
+      </div>
+      <div class="row my-5 g-5 justify-content-around align-items-center">
+        <div class="col-6 col-lg-4">
+          <img src="{% static 'projects/mvhtransparent.png' %}" class="img-fluid" alt="ebook">
+        </div>
+        <div class="col-lg-6">
+          
+          <!-- accordion -->
+          <div class="accordion" id="chapters">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading-1">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#chapter-1" aria-expanded="true" aria-controls="chapter-1">
+                  Video Hubs - Personalized Playlists
+                </button>
+              </h2>
+              <div id="chapter-1" class="accordion-collapse collapse show" aria-labelledby="heading-1" data-bs-parent="#chapters">
+                <div class="accordion-body">
+                  <p>My Video Hub is a free video sharing website that makes it easy to create and 
+                    watch video playlists online. The website utilizes YouTube's API to access the vast database
+                    that is connected to the world's most popular video content website.</p>
+                  <p>My Video Hub is simple, easy to use, and focused on each user sharing video Hubs (e.g. video Playlists)
+                    that speak to their specific interests and personality characteristics.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading-2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#chapter-2" aria-expanded="false" aria-controls="chapter-2">
+                Python Django Web Framework - Lightning Fast 
+                </button>
+              </h2>
+              <div id="chapter-2" class="accordion-collapse collapse" aria-labelledby="heading-2" data-bs-parent="#chapters">
+                <div class="accordion-body">
+                  <p>Designed to securely scale and handle rapid user growth, My Video Hub is built with the high level Django web development framework.
+                    Django helps to ensure that the web application can handle massive spikes in web traffic at any given time.</p>
+                  <p>Some of the busiest sites on the web leverage Django’s ability to quickly and flexibly scale. Therefore, Django is the ideal
+                  web framework to integrate with YouTubes popular API.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading-3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#chapter-3" aria-expanded="false" aria-controls="chapter-1">
+                The Power of Python - "Don't Repeat Yourself"
+                </button>
+              </h2>
+              <div id="chapter-3" class="accordion-collapse collapse" aria-labelledby="heading-3" data-bs-parent="#chapters">
+                <div class="accordion-body">
+                  <p>The DRY or “Don’t Repeat Yourself” principle is a software development practice aimed at reducing repetition 
+                    of information.</p>
+                  <p>MVH was built with the DRY design principle in mind, resulting in a simple database designed to hold two classes,
+                    one class for the User to create Hubs and another class for a signed in User to create and modify individual videos.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading-4">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#chapter-4" aria-expanded="false" aria-controls="chapter-4">
+                The Front-End - HTML5 + Bootstrap5 
+                </button>
+              </h2>
+              <div id="chapter-4" class="accordion-collapse collapse" aria-labelledby="heading-4" data-bs-parent="#chapters">
+                <div class="accordion-body">
+                  <p>HTML5 is a markup language used for structuring and presenting content on the World Wide Web. HTML
+                    design principles were used to structure the site into sections such as Header, Nav, Main, and Footer.</p>
+                  <p>In addition, Bootstrap's grid layout system was implemented via containers and other best practices to ensure a mobile first design was achieved.
+                  Bootstrap5 is the newest version of Bootstrap and the most popular CSS Framework for developing responsive and mobile-first websites.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading-5">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#chapter-5" aria-expanded="false" aria-controls="chapter-5">
+                Web API - Django REST framework
+                </button>
+              </h2>
+              <div id="chapter-5" class="accordion-collapse collapse" aria-labelledby="heading-5" data-bs-parent="#chapters">
+                <div class="accordion-body">
+                  <p>Django REST framework is a powerful and flexible toolkit for building Web APIs. My Video Hub utilizes REST API serializers
+                  to fully support both ORM and non-ORM data sources.</p>
+                  <p>Additionally, I implemented a default API root view with format suffix patterns attached to the original URLs to create a user-friendly
+                  web browsable API.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- contact form: form-control, form-label, form-select, input-group, input-group-text -->
+  <section id="contact">
+    <div class="container-lg">
+        <div class="text-center">
+            <h2>Get in Touch</h2>
+            <p class="lead">Questions to ask? Fill out the form to contact me directly...</p>
+        </div>
+        <div class="row justify-content-center my-5">
+            <div class="col-lg-6">
+                <form action=""  autocomplete="on">
+                    {% csrf_token %}
+                    <label for="email" class="form-label">Email address:</label>
+                    <div class="mb-4 input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-envelope-check-fill"></i>
+                        </span>
+                        <input type="email" class="form-control" id="email" 
+                    placeholder="e.g. Pythondev@gmail.com" required>
+                    <!--tooltip-->
+                    <span class="input-group-text">
+                        <span class="tt" data-bs-placement="bottom" title="Enter an email address I can reply to">
+                        <i class="bi bi-question-circle text-muted"></i>
+                    </span>
+                    </span>
+                    </div>
+                    <label for="name" class="form-label">Name:</label>
+                    <div class="mb-4 input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-person-fill"></i>
+                        </span>
+                        <input type="text" class="form-control" id="name" placeholder="e.g. Your name" required>
+                        <!--tooltip-->
+                        <span class="input-group-text">
+                            <span class="tt" data-bs-placement="bottom" title="Please enter your name.">
+                            <i class="bi bi-question-circle text-muted"></i>
+                        </span>
+                        </span>
+                    </div>
+                    <label for="subject" class="form-label">What is your inquiry about?</label>
+                    <div class="input-group mb-4">
+                        <span class="input-group-text">
+                            <i class="bi bi-chat-right-dots-fill"></i>
+                        </span>
+                        <select name="" id="subject" class="form-select">
+                            <option value="pricing" selected>Job Availability</option>
+                            <option value="content">Contract Availablity</option>
+                            <option value="other">Other freelance questions</option>
+                        </select>
+                    </div>
+                    <div class="form-floating mb-4 mt-5">
+                        <textarea name="" id="query" class="form-control" style="height: 140px;"></textarea>
+                        <label for="query">Your query...</label>
+                    </div>
+                    <div class="mb-4 text-center">
+                        <button type="submit" class="btn btn-warning">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Get updates/modal trigger-->
+<section class="bg-light" class="join">
+    <div class="container">
+        <div class="text-center">
+            <h2>Stay in the loop</h2>
+            <p class="lead">Get the latest updates for each project...</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <p class="my-4">This is my official professional portfolio website that hosts all of
+                    my professional work. I look forward to sharing all of my Python web based projects with you and
+                    the rest of the world!</p> 
+                    <p>Please feel free to reach out if you have any questions related to the website, my projects
+                    or my availability for software engineer work.</p> 
+              <a href="#contact" class="btn btn-warning">
+                Contact Me Today
+              </a> 
+            </div>
+        </div>
+    </div>
+    </section>
+{% endblock %}
