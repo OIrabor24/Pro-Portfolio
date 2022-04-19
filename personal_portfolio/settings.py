@@ -125,15 +125,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/') # Creates media folder to save imagefield objects; added backslash 4/19!!
-MEDIA_URL = '/media/'
+#development settings!!
+# MEDIA_URL = '/media/'
+# STATIC_URL = '/static/'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -150,7 +148,7 @@ DATABASES['default'].update(db_from_env)
 
 
 #AWS Setting for using S3 as CDN!
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' #needed for development env.
+ #needed for development env.
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
@@ -161,9 +159,21 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 AWS_LOCATION = 'static'
 
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
 AWS_QUERYSTRING_AUTH = False 
 AWS_S3_REGION_NAME = 'us-west-1'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 AWS_S3_ADDRESSING_STYLE = 'virtual'
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.0/howto/static-files/
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = '/static/' 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Creates media folder to save imagefield objects; added backslash 4/19!!
+MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, 'media')
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION) 
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
